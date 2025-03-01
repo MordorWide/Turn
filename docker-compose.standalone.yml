@@ -1,0 +1,19 @@
+
+services:
+  mordorwide-udpturn:
+    build:
+      context: .
+    image: mordorwide/udpturn:latest
+    container_name: mordorwide-udpturn
+    environment:
+      - "RELAY_PORT_RANGE_START=${RELAY_PORT_RANGE_START}"
+      - "RELAY_PORT_RANGE_END=${RELAY_PORT_RANGE_END}"
+      - "CMD_HOST=${CMD_HOST}"
+      - "CMD_PORT=${CMD_PORT}"
+    # Use host network mode to avoid Docker-related port range mapping issues
+    # Make sure to set up the firewall rules correctly on the control port
+    # and use host.docker.internal to access the control port from containers
+    network_mode: "host"
+    #ports:
+    #  - "40000-50000/udp"
+    #  - "127.0.0.1:8080:8080"
