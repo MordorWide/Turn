@@ -4,6 +4,7 @@ services:
     build:
       context: .
     image: mordorwide/udpturn:latest
+    pull_policy: never
     container_name: mordorwide-udpturn
     environment:
       - "RELAY_PORT_RANGE_START=${RELAY_PORT_RANGE_START}"
